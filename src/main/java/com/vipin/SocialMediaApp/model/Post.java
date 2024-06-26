@@ -3,12 +3,12 @@ package com.vipin.SocialMediaApp.model;
 public class Post {
 	private int id;
 	private String description;
-	public Post(int id, String description) {
+	public Post(Integer id, String description) {
 		super();
 		this.id = id;
 		this.description = description;
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	public void setId(int id) {

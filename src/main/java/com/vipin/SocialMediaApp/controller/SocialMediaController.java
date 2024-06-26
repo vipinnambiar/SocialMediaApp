@@ -30,22 +30,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class SocialMediaController {
 
 	@Autowired
-	UserService userService;
+	private  UserService userService;
 	
 @GetMapping(value="users/list")
 public ResponseEntity<List<User>> getUserList()
 {
 	List<User> usrlist = userService.userList;
-	return ResponseEntity.ok(usrlist);
+	return ResponseEntity.ok(usrlist); // static method that returns 201 with body as passed in the argument
 }
 
 @GetMapping(value="user/{id}")
-public User getUserList(@PathVariable int id)
+public ResponseEntity<User> getUserList(@PathVariable Integer id)
 {
 	User usr = userService.getUserbyId(id);
+
     if (usr == null)
     	throw new UserNotFoundException(" User not found - "+id);
-	return usr;
+	return new ResponseEntity<User>(usr,HttpStatus.OK);
 }
 
 @PostMapping(value="user/create")
@@ -57,8 +58,10 @@ public ResponseEntity<User> createUser(@Valid @RequestBody User user)
 }
 
 @DeleteMapping(value="user/delete/{id}")
-public ResponseEntity<ResponseMessage> deleteUser(@PathVariable int id)
+public ResponseEntity<ResponseMessage> deleteUser(@PathVariable Integer id)
 {  
+	
+	StringBuffer sb;
 	ResponseMessage respmsg=null;
 	if (userService.deleteUser(id)==1)
 	{

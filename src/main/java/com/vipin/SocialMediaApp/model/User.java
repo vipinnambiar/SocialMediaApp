@@ -2,23 +2,33 @@ package com.vipin.SocialMediaApp.model;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+
 public class User {
-	private int id;
+	
+	
+	private Integer id;
+	
+	@Size(min=2,message="min length should be 2")
 	private String name;
+	
+	@Past(message="Date of birth should be in the past")
 	private LocalDate birthDate;
 	
-	public User(int id, String name, LocalDate birthDate) {
+	public User(Integer id, String name, LocalDate birthDate) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.birthDate = birthDate;
 	}
 
-	public int getId() {
+	public Integer getId() {
+		
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

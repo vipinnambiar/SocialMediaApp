@@ -21,18 +21,15 @@ public class UserService {
 		  userList.add(new User(3,"Ranjith",LocalDate.now().minusYears(35)));
 	}
 	
-	public User getUserbyId(int id)
+	public User getUserbyId(Integer id)
 	{
 		User usr = userList.stream().filter(user -> user.getId() == id).findFirst().orElse(null);
-		
-		
 		return usr;
 	}
-	
-	
-	public int deleteUser(int id)
+		
+	public Integer deleteUser(Integer id)
 	{
-		int ret=0;
+		Integer ret=0;
 		try
 		{
 	      userList.removeIf(obj -> obj.getId() == id);
