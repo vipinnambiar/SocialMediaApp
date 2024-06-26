@@ -28,20 +28,20 @@ public class EmployeeController {
 	EmployeeService empService;
 	
 	//RequestMapping is not ideal recommendation for readability, use @getmapping ,@postmapping @deletemapping etc
-	@RequestMapping(value="/employees/list",method=RequestMethod.GET, produces = "application/json")
+	@RequestMapping(path="/employees/list",method=RequestMethod.GET, produces = "application/json")
 	public List<Employee> getEmployeeList()
 	{
 		return empService.getEmployeeList();
 	}
 
-	@GetMapping(value="/employee/{id}", produces = "application/json")
+	@GetMapping(path="/employee/{id}", produces = "application/json")
 	public Employee getEmployee(@PathVariable int id)
 	{
 		return empService.getEmployee(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Employee not found"));
 	}
 	
 	
-	@PostMapping(value="/employee/add",consumes ="application/json")
+	@PostMapping(path="/employee/add",consumes ="application/json")
 	public ResponseEntity addEmployee(@RequestBody Employee employee)
 	{
 		return new ResponseEntity(" Employee Created Successfully ",HttpStatus.OK);
